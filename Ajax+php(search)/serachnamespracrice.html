@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <script>
+      function loadSuggestions(input) {
+        if (input.length == 0) {
+          document.getElementById('output').innerHTML = '';
+        } else {
+          let xhr = new XMLHttpRequest();
+          xhr.onload = function () {
+            if (this.status == 200) {
+              document.getElementById('output').innerHTML = this.responseText;
+            }
+          };
+          let params = 'name=' + input;
+          xhr.open('POST', 'suggest1.php', true);
+          xhr.setRequestHeader(
+            'Content-type',
+            'application/x-www-form-urlencoded'
+          );
+          xhr.send(params);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Search</h1>
+      <form action="suggest1.php" method="POST">
+        <input
+          type="text"
+          class="form-control"
+          onkeyup="loadSuggestions(this.value)"
+        />
+        <p>Suggestions: <span id="output" style="font-weight: bold"></span></p>
+      </form>
+    </div>
+  </body>
+</html>
