@@ -11,4 +11,6 @@ Projects made by using php
           an alert class so i sticked to bootstrap.
           
    PROJECT 2 - A name search project using php and ajax
+   
+   PROJECT 3 - A blogsite with a capability to create posts and store them in a database and edit them and also delete them.
 
